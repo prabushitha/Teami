@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/title.ico">
+
+    <title>Teami</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/registration.css" rel="stylesheet">
+    <link href="css/navbar-fixed-top.css" rel="stylesheet">
+    <!--<link href="css/calender.css" rel="stylesheet">-->
+    <link href="css/application.css" rel="stylesheet">
+
+
+    <script src="js/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/notifyjs/notify.min.js"></script>
+    <script type="text/javascript" src="js/notifyjs/notify.js"></script>
+    <script type="text/javascript" src="js/notification.js"></script>
+    <script type="text/javascript" src="js/connectsql.js"></script>
+    <script type="text/javascript" src="js/makehome.js"></script>
+    <script type="text/javascript" src="js/logout.js"></script>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
+      <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <![endif]-->
+  </head>
+
+  <body style="background-color:#ffffff !important;">
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #25a2a6; border:1px solid #25a2a6; height:70px;">
+      <div class="container">
+          <div class="navbar-header" >
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><img src="images/tophead%20copy.png" class="img-responsive" style="height:50px; width:180px; border-radius:8px; margin-top:-5px;"/></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                  <li style="color:#ffffff; margin:20px 20px 0 0;"><span id="header_email">user@email.com </span> <span style="font-size:20px;">/</span> <b>Home</b></li>
+                  <li class="dropdown" >
+                      <a href="#" class="dropdown-toggle" style="margin-bottom:-16px !important;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="images/settings_png.png" style="width:30px; height: 30px; margin-top:5px; " class="img-responsive"/><span class="caret" style="margin:-46px 0 0 35px; color:#ffffff;  "></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="#">My Home</a></li>
+                          <li><p onclick="logout()">Logout</p></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div><!--/.nav-collapse -->
+      </div>
+  </nav>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-lg-4 col-sm-4 col-xs-12 profile-details" style="position:fixed; height:100vh; ">
+                <div class="row" style="margin-top:30px;">
+                    <center>
+                        <div >
+                            <img src="images/avatar_wbg.png" class="img-responsive" style="width:30%; height:60%; border:3px solid #25a2a6; border-radius:10px;  "/>
+                        </div>
+                    </center>
+
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                        <ul class="list-group">
+                            <li class="list-group-item">Name : <span id="profile_username"></span></li>
+                            <li class="list-group-item">Email : <span id="profile_email"></span></li>
+                            <li class="list-group-item">Gender : <span id="profile_gender"></span></li>
+                        </ul>
+                        <!--<div id="calendar" ></div>-->
+                        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>-->
+                    </div>
+                    <div class="col-xs-1"></div>
+
+                </div>
+                <center>
+                    <button type="button" class="btn btn-info btn-lg"  style="color:#080808; background-color: #ebebeb; font-size:15px; margin-top:20px; "><span class="glyphicon glyphicon-calendar" aria-hidden="true" style="margin-right:10px;"></span>Show Events </button>
+
+                </center>
+
+            </div>
+
+            <div class="col-lg-8 col-sm-8 col-xs-12 col-sm-push-4 mobile-group" style="position:relative !important;">
+                    <div class="row" style="margin-top:50px;">
+                        <div class="col-xs-10 col-xs-offset-1" style="border:2px dashed #25a2a6;border-radius:10px;">
+                            <h4>My Groups</h4>
+                            <div id="grouploadingarea">
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                <div class="row" style="margin-top:50px;">
+                    <center>
+                        <!--<div>-->
+                            <!--<button id="create" onclick="m()" class="btn btn-default" type="submit" style="color:#ffffff; background-color: #25a2a6; font-size:20px;">Create a New Group <span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-left:5px;"></span></button>-->
+
+                        <!--</div>-->
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="color:#ffffff; background-color: #25a2a6; font-size:20px;">Create a New Group <span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-left:5px;"></span></button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog" style="width:70% !important; margin-top:40px !important;">
+
+                                <!-- Modal content-->
+                                <form method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Create a Group</h4>
+                                    </div>
+                                    <div class="modal-body" style="text-align: left !important; ">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                    <img src="images/avatar_wbg.png" class="img-responsive" style=" border-radius:10px; margin-top:50px;" />
+
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1" style="text-align:left;"> Group Name</label>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" name="group_name" placeholder="">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1" style="text-align:left;"> Group Category</label>
+                                                    <div class="dropdown" style="text-align: left;">
+                                                        <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#25a2a6; border:1px solid #25a2a6;">Privacy Settings-->
+                                                        <!--<span class="caret"></span></button>-->
+                                                        <select name="gtype" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#ffffff; border:1px solid #25a2a6;color: #080808;"><span class="caret"></span>
+                                                            <option value="- Select -" style="background-color: #ffffff; color:#000000;">- Select -</option>
+                                                            <option value="Entertainment" style="background-color: #ffffff; color:#000000;"><span class="glyphicon glyphicon-music" aria-hidden="true" style="margin-left:5px; color:#000000;"></span>Entertainment</option>
+                                                            <option value="Business" style="background-color: #ffffff; color:#000000;">Business</option>
+                                                            <option value="Friends" style="background-color: #ffffff; color:#000000;">Friends</option>
+                                                            <option value="Family" style="background-color: #ffffff; color:#000000;">Family</option>
+                                                            <option value="Education" style="background-color: #ffffff; color:#000000;">Education</option>
+                                                            <option value="Research" style="background-color: #ffffff; color:#000000;">Research</option>
+                                                            <option value="Sports" style="background-color: #ffffff; color:#000000;">Sports</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1" style="text-align:left;"> Description</label>
+                                                        <textarea class="form-control" name="gdescription" rows="3" id="comment" placeholder="Describe your group"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1" style="text-align:left;">Privacy</label>
+                                                    <div class="dropdown">
+                                                        <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#25a2a6; border:1px solid #25a2a6;">Privacy Settings-->
+                                                            <!--<span class="caret"></span></button>-->
+                                                        <select name="gprivacy" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dro down" style="background-color:#ffffff; border:1px solid #25a2a6; color: #080808;"><span class="caret"></span>
+                                                            <option value="- Select -" style="background-color: #ffffff; color:#000000;">- Select -</option>
+                                                            <option value="Public" style="background-color: #ffffff; color:#000000;">Public</option>
+                                                            <option value="Members" style="background-color: #ffffff; color:#000000;">Members</option>
+                                                            <option value="Secret" style="background-color: #ffffff; color:#000000;">Secret</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1" style="text-align:left;"> Group image</label>
+                                                    <input type="file" id="exampleInputFile" />
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default" data-dismiss="" onclick="createGroup(this.form.group_name.value,this.form.gdescription.value,this.form.gprivacy.value,this.form.gtype.value)">Create</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/create.js"></script>-->
+
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+
+</body></html>

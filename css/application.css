@@ -1,0 +1,65 @@
+@media(min-width:100px) and (max-width:600px ){
+    #p1{
+        margin: 0 auto;
+        width:80px !important;
+        height:90px !important;
+        margin-top:-10px;
+    }
+    #p2{
+        margin:0 auto;
+        width:230px !important;
+        height:70px !important;
+        margin-top:-20px;
+    }
+}
+.profile-details{
+    background-image: url("../images/symphony.png");
+    background-repeat: repeat;
+}
+@media(min-width:10px) and (max-width:768px ){
+    .mobile-group{
+        margin-top:400px;
+        background-color:#ffffff;
+    }
+    #q2{
+        background-color: #25a2a6 !important;
+    }
+    .qqq{
+        margin-top:18px !important;
+    }
+    #side3{
+        display: none;
+    }
+
+}
+@media(min-width:10px) and (max-width:768px ){
+    #user{
+       display: none;
+    }
+
+}
+.group-T{
+    text-align: center;
+    text-decoration: none;
+    margin-top:15px;
+
+}
+.profile-details2{
+    background-image: url("../images/paven.png");
+    background-repeat: repeat;
+}
+
+/* CSS REQUIRED */
+.state-icon {
+    left: -5px;
+}
+.list-group-item-primary {
+    color:#ffffff;
+    background-color:#25a2a6 !important;
+}
+
+/* DEMO ONLY - REMOVES UNWANTED MARGIN */
+.well .list-group {
+    margin-bottom: 0px;
+}
+
